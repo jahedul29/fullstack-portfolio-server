@@ -5,6 +5,7 @@ import { ContributionRouter } from '../modules/contribution/contribution.route';
 import { ExperienceRouter } from '../modules/experience/experience.route';
 import { OwnerRouter } from '../modules/owner/owner.route';
 import { ProjectRouter } from '../modules/project/project.route';
+import { SkillRouter } from '../modules/skill/skill.route';
 import { UserRouter } from '../modules/user/user.route';
 
 const appRouter = express.Router();
@@ -37,6 +38,10 @@ const routes = [
   {
     path: '/experiences',
     route: ExperienceRouter,
+  },
+  {
+    path: '/skills',
+    route: SkillRouter,
   },
 ];
 
