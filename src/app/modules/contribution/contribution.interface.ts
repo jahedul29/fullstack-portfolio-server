@@ -16,4 +16,5 @@ export type IContributionMethods = object;
 
 export type IContributionFilters = {
   searchTerm?: string;
+  isFeatured?: boolean;
 };

@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { AuthRouter } from '../modules/auth/auth.router';
+import { BlogRouter } from '../modules/blog/blog.route';
 import { ContributionRouter } from '../modules/contribution/contribution.route';
 import { OwnerRouter } from '../modules/owner/owner.route';
 import { ProjectRouter } from '../modules/project/project.route';
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/contributions',
     route: ContributionRouter,
+  },
+  {
+    path: '/blogs',
+    route: BlogRouter,
   },
 ];
 
