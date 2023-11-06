@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import { AuthRouter } from '../modules/auth/auth.router';
 import { BlogRouter } from '../modules/blog/blog.route';
 import { ContributionRouter } from '../modules/contribution/contribution.route';
+import { ExperienceRouter } from '../modules/experience/experience.route';
 import { OwnerRouter } from '../modules/owner/owner.route';
 import { ProjectRouter } from '../modules/project/project.route';
 import { UserRouter } from '../modules/user/user.route';
@@ -32,6 +33,10 @@ const routes = [
   {
     path: '/blogs',
     route: BlogRouter,
+  },
+  {
+    path: '/experiences',
+    route: ExperienceRouter,
   },
 ];
 
