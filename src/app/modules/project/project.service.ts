@@ -1,42 +1,42 @@
 import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
 import { PaginationHelpers } from '../../../helpers/paginationHelper';
-import { USER_ROLE, USER_STATUS } from '../../../shared/enum/common';
 import { ApiError } from '../../../shared/errors/errors.clsses';
 import { IPaginationParams } from '../../../shared/interfaces';
-import { userSearchableFields } from './user.constant';
-import { IUser, IUserFilters } from './user.interface';
-import User from './user.model';
+import { projectSearchableFields } from './project.constant';
+import { IProject, IProjectFilters } from './project.interface';
+import Project from './project.model';
 
-const create = async (user: IUser): Promise<IUser | null> => {
-  user.status = USER_STATUS.ACTIVE;
-  user.role = USER_ROLE.MANAGER;
-
-  const savedUser = (await User.create(user)).toObject();
-  return savedUser;
+const create = async (project: IProject): Promise<IProject | null> => {
+  const savedProject = (await Project.create(project)).toObject();
+  return savedProject;
 };
 
 const update = async (
-  user: Partial<IUser>,
+  project: Partial<IProject>,
   id: string
-): Promise<IUser | null> => {
-  const isExist = await User.findById(id);
+): Promise<IProject | null> => {
+  const isExist = await Project.findById(id);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Project not found');
   }
 
-  const updatedUserData: Partial<IUser> = { ...user };
+  const updatedProjectData: Partial<IProject> = { ...project };
 
-  const savedUser = await User.findOneAndUpdate({ _id: id }, updatedUserData, {
-    new: true,
-  });
+  const savedProject = await Project.findOneAndUpdate(
+    { _id: id },
+    updatedProjectData,
+    {
+      new: true,
+    }
+  );
 
-  return savedUser;
+  return savedProject;
 };
 
 const findAll = async (
-  filters: IUserFilters,
+  filters: IProjectFilters,
   paginationParams: IPaginationParams
 ) => {
   const { page, limit, skip, sortBy, sortOrder } =
@@ -51,7 +51,7 @@ const findAll = async (
   const { searchTerm, ...filterData } = filters;
   const andConditions = [];
   let filterCondition = {};
-  const searchableFields: string[] = userSearchableFields;
+  const searchableFields: string[] = projectSearchableFields;
 
   if (searchTerm) {
     andConditions.push({
@@ -76,12 +76,12 @@ const findAll = async (
     filterCondition = { $and: andConditions };
   }
 
-  const result = await User.find(filterCondition)
+  const result = await Project.find(filterCondition)
     .sort(sortCondition)
     .skip(skip)
     .limit(limit);
 
-  const total = await User.countDocuments();
+  const total = await Project.countDocuments();
 
   return {
     meta: {
@@ -93,20 +93,20 @@ const findAll = async (
   };
 };
 
-const findOne = async (id: string): Promise<IUser | null> => {
-  const savedUser = await User.findById(id);
-  if (!savedUser) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const findOne = async (id: string): Promise<IProject | null> => {
+  const savedProject = await Project.findById(id);
+  if (!savedProject) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Project not found');
   }
-  return savedUser;
+  return savedProject;
 };
 
-const deleteOne = async (id: string): Promise<IUser | null> => {
-  const savedUser = await User.findByIdAndDelete(id);
-  return savedUser;
+const deleteOne = async (id: string): Promise<IProject | null> => {
+  const savedProject = await Project.findByIdAndDelete(id);
+  return savedProject;
 };
 
-export const UserService = {
+export const ProjectService = {
   create,
   update,
   findAll,
