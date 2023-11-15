@@ -3,9 +3,10 @@ export type IOwner = {
   email: string;
   phoneNumber: string;
   linkedInUrl: string;
-  facebookUrl: string;
+  facebookUrl?: string;
   githubUrl: string;
   resumeUrl: string;
+  stackOverflowUrl?: string;
   address: string;
   photoUrl: string;
   designation: string;

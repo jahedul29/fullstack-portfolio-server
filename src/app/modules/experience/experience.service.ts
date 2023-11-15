@@ -30,7 +30,7 @@ const update = async (
     {
       new: true,
     }
-  );
+  ).populate('technologies');
 
   return savedExperience;
 };
@@ -79,7 +79,8 @@ const findAll = async (
   const result = await Experience.find(filterCondition)
     .sort(sortCondition)
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate('technologies');
 
   const total = await Experience.countDocuments();
 
@@ -94,7 +95,9 @@ const findAll = async (
 };
 
 const findOne = async (id: string): Promise<IExperience | null> => {
-  const savedExperience = await Experience.findById(id);
+  const savedExperience = await Experience.findById(id).populate(
+    'technologies'
+  );
   if (!savedExperience) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Experience not found');
   }
@@ -102,7 +105,9 @@ const findOne = async (id: string): Promise<IExperience | null> => {
 };
 
 const deleteOne = async (id: string): Promise<IExperience | null> => {
-  const savedExperience = await Experience.findByIdAndDelete(id);
+  const savedExperience = await Experience.findByIdAndDelete(id).populate(
+    'technologies'
+  );
   return savedExperience;
 };
 

@@ -30,7 +30,7 @@ const update = async (
     {
       new: true,
     }
-  );
+  ).populate('technologies');
 
   return savedProject;
 };
@@ -79,7 +79,8 @@ const findAll = async (
   const result = await Project.find(filterCondition)
     .sort(sortCondition)
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate('technologies');
 
   const total = await Project.countDocuments();
 
@@ -94,7 +95,7 @@ const findAll = async (
 };
 
 const findOne = async (id: string): Promise<IProject | null> => {
-  const savedProject = await Project.findById(id);
+  const savedProject = await Project.findById(id).populate('technologies');
   if (!savedProject) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Project not found');
   }
@@ -102,7 +103,9 @@ const findOne = async (id: string): Promise<IProject | null> => {
 };
 
 const deleteOne = async (id: string): Promise<IProject | null> => {
-  const savedProject = await Project.findByIdAndDelete(id);
+  const savedProject = await Project.findByIdAndDelete(id).populate(
+    'technologies'
+  );
   return savedProject;
 };
 

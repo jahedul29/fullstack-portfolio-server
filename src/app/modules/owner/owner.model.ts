@@ -28,7 +28,6 @@ const ownerSchema = new Schema<IOwner>(
     },
     facebookUrl: {
       type: String,
-      required: true,
     },
     githubUrl: {
       type: String,
@@ -37,6 +36,9 @@ const ownerSchema = new Schema<IOwner>(
     resumeUrl: {
       type: String,
       required: true,
+    },
+    stackOverflowUrl: {
+      type: String,
     },
     address: {
       type: String,
