@@ -7,6 +7,7 @@ export type IOwner = {
   githubUrl: string;
   resumeUrl: string;
   stackOverflowUrl?: string;
+  calanderlyUrl?: string;
   address: string;
   photoUrl: string;
   designation: string;

@@ -12,21 +12,13 @@ const experienceSchema = new Schema<IExperience>(
       type: String,
       required: true,
     },
-    startMonth: {
-      type: String,
+    startTime: {
+      type: Date,
       enum: monthList,
       required: true,
     },
-    startYear: {
-      type: String,
-      required: true,
-    },
-    endMonth: {
-      type: String,
-      enum: monthList,
-    },
-    endYear: {
-      type: String,
+    endTime: {
+      type: Date,
     },
     isWorkingCurrently: {
       type: Boolean,
@@ -36,6 +28,7 @@ const experienceSchema = new Schema<IExperience>(
     show: {
       type: Boolean,
       required: true,
+      default: false,
     },
     technologies: [
       {
@@ -44,6 +37,10 @@ const experienceSchema = new Schema<IExperience>(
         required: true,
       },
     ],
+    description: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

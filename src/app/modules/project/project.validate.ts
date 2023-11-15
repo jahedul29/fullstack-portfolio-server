@@ -1,4 +1,4 @@
-import mongoose, { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import { z } from 'zod';
 import { projectCategories } from './project.constant';
 
@@ -27,7 +27,7 @@ const create = z.object({
     isFeatured: z.boolean({
       required_error: 'isFeatured is required and must be a boolean',
     }),
-    technologies: z.array(z.instanceof(Types.ObjectId), {
+    technologies: z.array(z.string(), {
       required_error:
         'Technologies array is required and must contain valid MongoDB ObjectIds',
     }),

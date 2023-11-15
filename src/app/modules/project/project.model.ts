@@ -43,6 +43,10 @@ const projectSchema = new Schema<IProject>(
         required: true,
       },
     ],
+    priorityScore: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

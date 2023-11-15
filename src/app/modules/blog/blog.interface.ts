@@ -7,6 +7,7 @@ export type IBlog = {
   platform: string;
   description: string;
   isFeatured: boolean;
+  priorityScore: number;
 };
 
 export type IBlogMethods = object;

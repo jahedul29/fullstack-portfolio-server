@@ -32,6 +32,10 @@ const blogSchema = new Schema<IBlog>(
       type: Boolean,
       required: true,
     },
+    priorityScore: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

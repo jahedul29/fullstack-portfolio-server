@@ -40,6 +40,9 @@ const ownerSchema = new Schema<IOwner>(
     stackOverflowUrl: {
       type: String,
     },
+    calanderlyUrl: {
+      type: String,
+    },
     address: {
       type: String,
       required: true,

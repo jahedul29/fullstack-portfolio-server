@@ -10,6 +10,7 @@ export type IContribution = {
   relatedUrl: string;
   isFeatured: boolean;
   technologies: Types.ObjectId[];
+  priorityScore: number;
 };
 
 export type IContributionMethods = object;

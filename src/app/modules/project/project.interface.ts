@@ -13,6 +13,7 @@ export type IProject = {
   videoUrl?: string;
   isFeatured: boolean;
   technologies: Types.ObjectId[];
+  priorityScore: number;
 };
 
 export type IProjectMethods = object;

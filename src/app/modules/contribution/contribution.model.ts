@@ -36,6 +36,10 @@ const contributionSchema = new Schema<IContribution>(
         required: true,
       },
     ],
+    priorityScore: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

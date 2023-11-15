@@ -34,7 +34,7 @@ const update = async (
     {
       new: true,
     }
-  );
+  ).populate('technologies');
 
   return savedContribution;
 };
@@ -83,7 +83,8 @@ const findAll = async (
   const result = await Contribution.find(filterCondition)
     .sort(sortCondition)
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate('technologies');
 
   const total = await Contribution.countDocuments();
 
@@ -98,7 +99,9 @@ const findAll = async (
 };
 
 const findOne = async (id: string): Promise<IContribution | null> => {
-  const savedContribution = await Contribution.findById(id);
+  const savedContribution = await Contribution.findById(id).populate(
+    'technologies'
+  );
   if (!savedContribution) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Contribution not found');
   }
@@ -106,7 +109,9 @@ const findOne = async (id: string): Promise<IContribution | null> => {
 };
 
 const deleteOne = async (id: string): Promise<IContribution | null> => {
-  const savedContribution = await Contribution.findByIdAndDelete(id);
+  const savedContribution = await Contribution.findByIdAndDelete(id).populate(
+    'technologies'
+  );
   return savedContribution;
 };
 
