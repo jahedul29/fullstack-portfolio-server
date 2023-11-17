@@ -62,6 +62,9 @@ const ownerSchema = new Schema<IOwner>(
       type: String,
       required: true,
     },
+    metaKeywords: {
+      type: [String],
+    },
   },
   {
     timestamps: true,

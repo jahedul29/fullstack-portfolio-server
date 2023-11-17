@@ -13,4 +13,5 @@ export type IOwner = {
   designation: string;
   summery?: string;
   aboutOwner: string;
+  metaKeywords?: string[];
 };

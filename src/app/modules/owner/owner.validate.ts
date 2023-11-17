@@ -25,6 +25,8 @@ const create = z.object({
     resumeUrl: z.string({
       required_error: 'resume Url is required',
     }),
+    stackOverflowUrl: z.string().optional(),
+    calanderlyUrl: z.string().optional(),
     address: z.string({
       required_error: 'address is required',
     }),
@@ -38,6 +40,7 @@ const create = z.object({
     aboutOwner: z.string({
       required_error: 'aboutOwner is required',
     }),
+    metaKeywords: z.array(z.string()).optional(),
   }),
 });
 
@@ -53,11 +56,14 @@ const update = z.object({
     facebookUrl: z.string().optional(),
     githubUrl: z.string().optional(),
     resumeUrl: z.string().optional(),
+    stackOverflowUrl: z.string().optional(),
+    calanderlyUrl: z.string().optional(),
     address: z.string().optional(),
     photoUrl: z.string().optional(),
     designation: z.string().optional(),
     summery: z.string().optional(),
     aboutOwner: z.string().optional(),
+    metaKeywords: z.array(z.string()).optional(),
   }),
 });
 
